@@ -1,0 +1,19 @@
+version: '3.4'
+
+services:
+  tiendaservice.api.author:
+    image: ${DOCKER_REGISTRY-}tiendaserviceapiauthor
+    build:
+      context: .
+      dockerfile: TiendaService.Api.Author/Dockerfile
+  tiendaservice.api.book:
+    image: ${DOCKER_REGISTRY-}tiendaserviceapibook
+    build:
+      context: .
+      dockerfile: TiendaService.Api.Book/Dockerfile
+
+networks:
+  default:
+    external:
+      name : TiendaMicroservice
+

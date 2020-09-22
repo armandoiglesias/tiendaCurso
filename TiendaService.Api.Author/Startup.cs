@@ -36,7 +36,7 @@ namespace TiendaService.Api.Author
 
             services.AddDbContext<ContextAuthor>(options =>
            {
-               options.UseSqlServer(Configuration.GetConnectionString("Author_DB"));
+               options.UseNpgsql(Configuration.GetConnectionString("Author_DB"));
            });
 
             services.AddMediatR(typeof(Application.Nuevo.Handler).Assembly);
