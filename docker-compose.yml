@@ -12,8 +12,22 @@ services:
       context: .
       dockerfile: TiendaService.Api.Book/Dockerfile
 
+  tiendaservice.webapi.cart:
+    image: ${DOCKER_REGISTRY-}tiendaservicewebapicart
+    build:
+      context: .
+      dockerfile: TiendaService.WebApi.Cart/Dockerfile
+
+  tiendaservice.api.gateway:
+    image: ${DOCKER_REGISTRY-}tiendaserviceapigateway
+    build:
+      context: .
+      dockerfile: TiendaService.Api.Gateway/Dockerfile
+
 networks:
   default:
     external:
       name : TiendaMicroservice
+
+
 

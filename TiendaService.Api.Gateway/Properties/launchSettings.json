@@ -3,7 +3,7 @@
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
     "iisExpress": {
-      "applicationUrl": "http://localhost:50171",
+      "applicationUrl": "http://localhost:59974",
       "sslPort": 0
     }
   },
@@ -17,7 +17,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "TiendaService.WebApi.Cart": {
+    "TiendaService.Api.Gateway": {
       "commandName": "Project",
       "launchBrowser": true,
       "launchUrl": "api/values",
@@ -31,7 +31,7 @@
       "launchBrowser": true,
       "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}/api/values",
       "environmentVariables": {},
-      "httpPort": 50172
+      "httpPort": 59975
     }
   }
 }

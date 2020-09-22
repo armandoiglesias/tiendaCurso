@@ -18,3 +18,21 @@ services:
     ports:
       - "58691:80"
 
+
+  tiendaservice.webapi.cart:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - Services__Book=http://tiendaservice.api.book
+      - Services__Author=http://tiendaservice.api.author
+    ports:
+      - "58692:80"
+
+
+  tiendaservice.api.gateway:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    depends_on:
+      - tiendaservice.api.book
+    ports:
+      - "58695:80"
+

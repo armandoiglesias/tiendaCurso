@@ -1,0 +1,89 @@
+{
+  "ReRoutes": [
+    {
+      "DownstreamPathTemplate": "/api/book",
+      "DownstreamScheme": "http",
+      "DownstreamHostandPorts": [
+        {
+          "Host": "tiendaservice.api.book",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/book",
+      "UpstreamHttpMethod": [ "GET", "POST", "PUT" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/book/{id}",
+      "DownstreamScheme": "http",
+      "DownstreamHostandPorts": [
+        {
+          "Host": "tiendaservice.api.book",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/book/{id}",
+      "UpstreamHttpMethod": [ "GET", "DELETE" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/Author/Authors",
+      "DownstreamScheme": "http",
+      "DownstreamHostandPorts": [
+        {
+          "Host": "tiendaservice.api.author",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/Author",
+      "UpstreamHttpMethod": [ "GET" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/Author/{id}",
+      "DownstreamScheme": "http",
+      "DownstreamHostandPorts": [
+        {
+          "Host": "tiendaservice.api.author",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/Author/{id}",
+      "UpstreamHttpMethod": [ "GET", "DELETE" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/Author/Create",
+      "DownstreamScheme": "http",
+      "DownstreamHostandPorts": [
+        {
+          "Host": "tiendaservice.api.author",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/Author",
+      "UpstreamHttpMethod": [ "POST" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/Cart",
+      "DownstreamScheme": "http",
+      "DownstreamHostandPorts": [
+        {
+          "Host": "tiendaservice.webapi.cart",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/Cart",
+      "UpstreamHttpMethod": [ "POST" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/Cart/{Id}",
+      "DownstreamScheme": "http",
+      "DownstreamHostandPorts": [
+        {
+          "Host": "tiendaservice.webapi.cart",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/Cart/{Id}",
+      "UpstreamHttpMethod": [ "GET" ]
+    }
+  ],
+  "GlobalConfiguration": {}
+}
