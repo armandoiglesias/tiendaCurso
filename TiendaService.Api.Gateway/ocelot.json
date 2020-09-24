@@ -22,7 +22,10 @@
         }
       ],
       "UpstreamPathTemplate": "/book/{id}",
-      "UpstreamHttpMethod": [ "GET", "DELETE" ]
+      "UpstreamHttpMethod": [ "GET", "DELETE" ],
+      "DelegatingHandlers": [
+        "BookHandler"
+      ]
     },
     {
       "DownstreamPathTemplate": "/api/Author/Authors",

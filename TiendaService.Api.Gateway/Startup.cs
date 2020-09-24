@@ -11,6 +11,9 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Ocelot.DependencyInjection;
 using Ocelot.Middleware;
+using TiendaService.Api.Gateway.Applcation;
+using TiendaService.Api.Gateway.MessageHandler;
+using TiendaService.Api.Gateway.RemoteInterface;
 
 namespace TiendaService.Api.Gateway
 {
@@ -28,7 +31,12 @@ namespace TiendaService.Api.Gateway
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
-            services.AddOcelot();
+            services.AddOcelot().AddDelegatingHandler<BookHandler>();
+
+            services.AddSingleton<IAuthor, AuthorRemote>();
+            services.AddHttpClient("AuthorService", config => {
+                config.BaseAddress = new Uri(Configuration["Services:Author"]);
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
