@@ -31,5 +31,11 @@ namespace TiendaService.Api.Book.Controllers
         {
             return await _mediator.Send(new GetBook.Book(Id));
         }
+
+        [HttpGet]
+        public async Task<ActionResult<List<BookDto>>> GetBooks()
+        {
+            return await _mediator.Send(new GetBooks.Execute());
+        }
     }
 }

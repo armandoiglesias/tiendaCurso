@@ -16,6 +16,10 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using TiendaService.Api.Author.Application.Querys;
 using TiendaService.Api.Author.Models.Persistance;
+using TiendaService.Api.Author.RabbitHandler;
+using TiendaService.RabbitMQ.Bus.BusRabbit;
+using TiendaService.RabbitMQ.Bus.EventQueue;
+using TiendaService.RabbitMQ.Bus.Implementation;
 
 namespace TiendaService.Api.Author
 {
@@ -31,6 +35,10 @@ namespace TiendaService.Api.Author
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddTransient<IRabbitEventBus, RabbitEventBus>();
+
+            services.AddTransient<IEventHandler<EmailEventQueue>, EmailEventHandler>();
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
                 .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<Models.Author>());
 
@@ -62,6 +70,9 @@ namespace TiendaService.Api.Author
 
             //app.UseHttpsRedirection();
             app.UseMvc();
+
+            var eventBus = app.ApplicationServices.GetRequiredService<IRabbitEventBus>();
+            eventBus.Subscribe<EmailEventQueue, EmailEventHandler>();
         }
     }
 }
