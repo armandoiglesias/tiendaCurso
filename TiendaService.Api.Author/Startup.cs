@@ -17,6 +17,8 @@ using Microsoft.Extensions.Options;
 using TiendaService.Api.Author.Application.Querys;
 using TiendaService.Api.Author.Models.Persistance;
 using TiendaService.Api.Author.RabbitHandler;
+using TiendaService.Message.Email.SendGridLibrary.Interface;
+using TiendaService.Message.Email.SendGridLibrary.Implementation;
 using TiendaService.RabbitMQ.Bus.BusRabbit;
 using TiendaService.RabbitMQ.Bus.EventQueue;
 using TiendaService.RabbitMQ.Bus.Implementation;
@@ -35,7 +37,15 @@ namespace TiendaService.Api.Author
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddTransient<IRabbitEventBus, RabbitEventBus>();
+            services.AddSingleton<IRabbitEventBus, RabbitEventBus>(sp =>
+           {
+               var scopeFactory = sp.GetRequiredService<IServiceScopeFactory>();
+               return new RabbitEventBus(sp.GetService<IMediator>(), scopeFactory);
+           });
+
+            services.AddSingleton<ISendGridSend, SendGridSend>();
+
+            services.AddTransient<EmailEventHandler>();
 
             services.AddTransient<IEventHandler<EmailEventQueue>, EmailEventHandler>();
 
